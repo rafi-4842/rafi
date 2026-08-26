@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Muhammad Rafi | Cloud FinOps Superhero</title>
+<meta name="description" content="Muhammad Rafi - Cloud Operations, FinOps, GCP Billing & Strategic Leadership">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,700;1,700&family=Permanent+Marker&family=Oswald:wght@600;700&display=swap');
+
+:root {
+  /* Vintage Pulp Comic Palette */
+  --ink: #0b0c10;
+  --paper: #f7edd0;
+  --comic-yellow: #ffea00;
+  --comic-red: #ff2238;
+  --comic-cyan: #00e5ff;
+  --comic-blue: #1e50ff;
+  --comic-magenta: #ff007f;
+  --panel-bg: #151a28;
+  --card-bg: #1f273d;
+  
+  --border-thick: 4px solid var(--ink);
+  --border-thin: 2px solid var(--ink);
+  
+  --shadow-hard: 6px 6px 0px var(--ink);
+  --shadow-red: 6px 6px 0px var(--comic-red);
+  --shadow-yellow: 6px 6px 0px var(--comic-yellow);
+}
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 85px; 
+}
+
+body {
+  margin: 0;
+  background-color: #0e121b;
+  color: var(--paper);
+  font-family: 'Comic Neue', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  
+  /* Coarse Ben-Day Halftone Dots & Dynamic Comic Grid */
+  background-image: 
+    radial-gradient(rgba(255, 234, 0, 0.12) 2px, transparent 2px),
+    radial-gradient(rgba(255, 34, 56, 0.08) 2px, transparent 2px),
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 16px 16px, 24px 24px, 40px 40px, 40px 40px;
+  background-position: 0 0, 8px 8px, 0 0, 0 0;
+  background-attachment: fixed;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.container { 
+  width: 100%; 
+  max-width: 1100px; 
+  padding-left: 16px; 
+  padding-right: 16px; 
+  margin: 0 auto; 
+}
+
+section { scroll-margin-top: 85px; }
+
+/* DYNAMIC STARBURST / ACTION SFX BADGES */
+.sfx-badge {
+  display: inline-block;
+  font-family: 'Permanent Marker', cursive;
+  color: var(--ink);
+  background: var(--comic-yellow);
+  padding: 6px 14px;
+  font-size: 18px;
+  line-height: 1;
+  text-transform: uppercase;
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px var(--ink);
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  transform: rotate(-4deg);
+  user-select: none;
+}
+
+.sfx-burst {
+  position: absolute;
+  font-family: 'Bangers', cursive;
+  font-size: 26px;
+  color: var(--comic-yellow);
+  background: var(--comic-red);
+  padding: 8px 16px;
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px var(--ink);
+  text-shadow: 2px 2px 0px var(--ink);
+  transform: rotate(12deg) scale(0.9);
+  z-index: 10;
+  pointer-events: none;
+  clip-path: polygon(50% 0%, 65% 20%, 98% 10%, 78% 40%, 100% 70%, 70% 75%, 60% 100%, 40% 78%, 10% 95%, 22% 60%, 0% 40%, 30% 30%);
+}
+
+/* HEADER & NAV */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--panel-bg);
+  border-bottom: var(--border-thick);
+  box-shadow: 0 6px 0px var(--ink);
+}
+
+.navbar {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-badge {
+  background: var(--comic-red);
+  color: #fff;
+  padding: 6px 16px;
+  font-family: 'Bangers', cursive;
+  font-size: 26px;
+  letter-spacing: 1.5px;
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px var(--ink);
+  transform: rotate(-3deg);
+  text-shadow: 2px 2px 0px var(--ink);
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--comic-yellow);
+  color: var(--ink);
+  border: var(--border-thick);
+  box-shadow: 3px 3px 0px var(--ink);
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 72px);
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 16px;
+  border-bottom: var(--border-thick);
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 999;
+  list-style: none;
+  margin: 0;
+}
+
+.nav-links.active { transform: translateX(0); }
+
+.nav-links a {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  padding: 12px;
+  background: var(--card-bg);
+  color: var(--paper);
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px var(--ink);
+  transform: skewX(-6deg);
+  display: block;
+}
+
+.nav-links a:active {
+  background: var(--comic-yellow);
+  color: var(--ink);
+  text-shadow: none;
+}
+
+/* HERO SECTION */
+.hero {
+  padding: 30px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+.hero-header-box {
+  position: relative;
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  padding: 24px 20px;
+}
+
+.hero h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(42px, 11vw, 76px);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  color: var(--paper);
+  margin: 12px 0;
+  text-shadow: 4px 4px 0px var(--ink);
+}
+
+.hero h1 span {
+  color: var(--comic-red);
+  display: block;
+  transform: rotate(-1deg);
+}
+
+/* COMIC SPEECH BUBBLE WITH TAIL */
+.speech-bubble {
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 18px 20px;
+  font-family: 'Comic Neue', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 5px 5px 0px var(--ink);
+  margin: 20px 0 24px;
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 30px;
+  border-width: 16px 16px 0;
+  border-style: solid;
+  border-color: var(--paper) transparent;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -22px;
+  left: 27px;
+  border-width: 19px 19px 0;
+  border-style: solid;
+  border-color: var(--ink) transparent;
+  z-index: -1;
+}
+
+/* TOUCH-FRIENDLY ACTION BUTTONS */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.btn-comic {
+  font-family: 'Bangers', cursive;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  padding: 14px 20px;
+  min-height: 52px;
+  width: 100%;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skewX(-4deg);
+  text-shadow: 2px 2px 0px var(--ink);
+  transition: transform 0.1s ease;
+}
+
+.btn-comic.primary { background: var(--comic-red); color: #fff; }
+.btn-comic.secondary { background: var(--comic-cyan); color: var(--ink); text-shadow: none; }
+.btn-comic.yellow { background: var(--comic-yellow); color: var(--ink); text-shadow: none; }
+
+.btn-comic:active {
+  transform: skewX(-4deg) translate(3px, 3px);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+/* HERO STATS PANEL */
+.hero-panel {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: 8px 8px 0px var(--comic-red), 8px 8px 0px 4px var(--ink);
+  padding: 20px;
+  position: relative;
+}
+
+.panel-title {
+  background: var(--comic-yellow);
+  color: var(--ink);
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  padding: 6px 12px;
+  border: var(--border-thick);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  transform: rotate(-1deg);
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.stat-box {
+  background: var(--card-bg);
+  border: var(--border-thick);
+  padding: 14px 8px;
+  text-align: center;
+  box-shadow: 4px 4px 0px var(--ink);
+  transform: rotate(1deg);
+}
+
+.stat-box:nth-child(even) { transform: rotate(-1deg); }
+
+.stat-box strong {
+  display: block;
+  font-family: 'Bangers', cursive;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--comic-cyan);
+  text-shadow: 3px 3px 0px var(--ink);
+}
+
+.stat-box span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--paper);
+}
+
+/* SECTION TITLES */
+.section { 
+  padding: 44px 0; 
+  border-top: 4px dashed var(--comic-yellow); 
+}
+
+.section-header {
+  position: relative;
+  margin-bottom: 28px;
+  display: inline-block;
+}
+
+.section-tag {
+  background: var(--comic-magenta);
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border: var(--border-thick);
+  box-shadow: 3px 3px 0px var(--ink);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.section h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(34px, 8vw, 52px);
+  margin: 6px 0 0;
+  letter-spacing: 2px;
+  color: var(--paper);
+  text-shadow: 3px 3px 0px var(--ink);
+}
+
+/* CAPABILITIES CARDS */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.comic-card {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  padding: 20px;
+  position: relative;
+}
+
+.comic-card:nth-child(odd) { transform: rotate(-0.5deg); }
+.comic-card:nth-child(even) { transform: rotate(0.5deg); }
+
+.card-num {
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  color: var(--comic-yellow);
+  text-shadow: 2px 2px 0px var(--ink);
+}
+
+.comic-card h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin: 4px 0 10px;
+  color: var(--comic-cyan);
+  text-shadow: 2px 2px 0px var(--ink);
+}
+
+.comic-card p {
+  color: #e2e8f0;
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+
+.pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: var(--comic-yellow);
+  color: var(--ink);
+  border: var(--border-thin);
+  padding: 2px 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+/* MISSION TIMELINE STRIP */
+.timeline-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.story-panel {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: 6px 6px 0px var(--comic-blue), 6px 6px 0px 4px var(--ink);
+  padding: 20px;
+  position: relative;
+}
+
+.story-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  background: rgba(255,255,255,0.03);
+  padding: 12px;
+  border: var(--border-thin);
+}
+
+.company-title {
+  font-family: 'Bangers', cursive;
+  font-size: 30px;
+  letter-spacing: 1px;
+  color: var(--comic-yellow);
+  text-shadow: 2px 2px 0px var(--ink);
+  line-height: 1;
+}
+
+.role-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  color: var(--comic-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.date-badge {
+  background: var(--comic-red);
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border: var(--border-thick);
+  box-shadow: 3px 3px 0px var(--ink);
+  align-self: flex-start;
+  transform: rotate(-1deg);
+}
+
+.story-panel ul { margin: 0; padding-left: 20px; color: #e2e8f0; }
+.story-panel li { margin-bottom: 10px; font-size: 15px; }
+
+/* CERTIFICATIONS */
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.cert-card {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cert-icon {
+  width: 58px;
+  height: 58px;
+  background: var(--comic-yellow);
+  color: var(--ink);
+  border: var(--border-thick);
+  font-family: 'Bangers', cursive;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  box-shadow: 3px 3px 0px var(--ink);
+  flex-shrink: 0;
+  transform: rotate(-3deg);
+}
+
+.cert-card h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin: 0;
+  color: #fff;
+}
+
+.cert-card p { margin: 2px 0 0; color: #94a3b8; font-size: 13px; font-family: 'Oswald', sans-serif;}
+
+/* CALL TO ACTION */
+.contact-panel {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  box-shadow: 8px 8px 0px var(--comic-yellow), 8px 8px 0px 4px var(--ink);
+  padding: 34px 20px;
+  text-align: center;
+  margin: 20px 0 40px;
+  position: relative;
+}
+
+.contact-panel h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(32px, 8vw, 48px);
+  color: var(--paper);
+  margin: 0 0 12px;
+  text-shadow: 3px 3px 0px var(--ink);
+}
+
+.contact-panel p {
+  color: #e2e8f0;
+  font-size: 16px;
+  margin: 0 0 24px;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 16px;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  border-top: var(--border-thick);
+  background: #080a0f;
+}
+
+/* DESKTOP ENHANCEMENTS */
+@media (min-width: 640px) {
+  .hero-stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+  .btn-group { flex-direction: row; }
+  .btn-comic { width: auto; }
+  .story-header { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+  .date-badge { align-self: auto; }
+}
+
+@media (min-width: 900px) {
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; padding: 60px 0 80px; }
+  .capabilities-grid { grid-template-columns: repeat(3, 1fr); }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu-toggle { display: none; }
+  .nav-links {
+    position: static;
+    height: auto;
+    width: auto;
+    background: transparent;
+    flex-direction: row;
+    padding: 0;
+    gap: 12px;
+    border: none;
+    transform: none;
+  }
+  .nav-links a {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 18px;
+    transform: skewX(-6deg);
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="#about" class="logo-badge">MUHAMMAD RAFI</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">MENU ☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Origins</a></li>
+      <li><a href="#powers">Capabilities</a></li>
+      <li><a href="#missions">Missions</a></li>
+      <li><a href="#credentials">Badges</a></li>
+      <li><a href="#contact">Signal</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="container hero" id="about">
+    <div class="hero-left">
+      <div class="sfx-badge">ISSUE #01 // SPECIAL EDITION</div>
+      <h1>CLOUD FINOPS <span>SUPERHERO!</span></h1>
+      
+      <div class="speech-bubble">
+        "Mastering GCP Billing, slashing cloud spend, and commanding high-performing teams to maximize financial architecture!"
+      </div>
+
+      <div class="btn-group">
+        <a href="#missions" class="btn-comic primary">VIEW MISSIONS</a>
+        <a href="mailto:rafi4842@gmail.com" class="btn-comic yellow">SEND SIGNAL</a>
+        <a href="https://www.linkedin.com/in/muhammad-rafi-38b566b3" target="_blank" rel="noreferrer" class="btn-comic secondary">LINKEDIN ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="sfx-burst" style="top: -20px; right: -10px;">POW!</div>
+      <div class="panel-title">
+        <span>HERO METRICS</span>
+        <span>STATUS: ACTIVE</span>
+      </div>
+      <div class="hero-stats-grid">
+        <div class="stat-box">
+          <strong>40+</strong>
+          <span>Analysts Led</span>
+        </div>
+        <div class="stat-box">
+          <strong>8+</strong>
+          <span>Years Exp.</span>
+        </div>
+        <div class="stat-box">
+          <strong>GCP</strong>
+          <span>Certified</span>
+        </div>
+        <div class="stat-box">
+          <strong>FOCP</strong>
+          <span>FinOps Lead</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" id="powers">
+    <div class="section-header">
+      <div class="section-tag">POWER GRID</div>
+      <h2>CORE CAPABILITIES</h2>
+    </div>
+
+    <div class="capabilities-grid">
+      <article class="comic-card">
+        <div class="card-num">POWER #01</div>
+        <h3>FinOps Governance</h3>
+        <p>Expert cloud spend analysis, cost driver identification, anomaly detection, and automated optimization strategies.</p>
+        <div class="pill-group"><span class="pill">Cost Control</span><span class="pill">CUDs</span></div>
+      </article>
+
+      <article class="comic-card">
+        <div class="card-num">POWER #02</div>
+        <h3>GCP Billing Ops</h3>
+        <p>Deep evaluation of billing structures, custom enterprise pricing, usage metrics, and multi-tenant reconciliation.</p>
+        <div class="pill-group"><span class="pill">GCP</span><span class="pill">BigQuery</span></div>
+      </article>
+
+      <article class="comic-card">
+        <div class="card-num">POWER #03</div>
+        <h3>Cloud Operations</h3>
+        <p>High-availability SLA ownership, rapid RCA resolution, process streamlining, and operational risk management.</p>
+        <div class="pill-group"><span class="pill">SLA</span><span class="pill">RCA</span></div>
+      </article>
+
+      <article class="comic-card">
+        <div class="card-num">POWER #04</div>
+        <h3>Team Leadership</h3>
+        <p>Direct leadership of a 40-member operational unit with focus on high quality, coaching, performance, and growth.</p>
+        <div class="pill-group"><span class="pill">40 FTEs</span><span class="pill">Mentorship</span></div>
+      </article>
+
+      <article class="comic-card">
+        <div class="card-num">POWER #05</div>
+        <h3>Stakeholder Relations</h3>
+        <p>Bridging communications across C-suite leadership, finance executives, product managers, and enterprise clients.</p>
+        <div class="pill-group"><span class="pill">Enterprise</span><span class="pill">Escalations</span></div>
+      </article>
+
+      <article class="comic-card">
+        <div class="card-num">POWER #06</div>
+        <h3>Financial Analytics</h3>
+        <p>Modeling financial trends using Looker BI, complex formulas (XLOOKUP, SUMIFS), and interactive dashboards.</p>
+        <div class="pill-group"><span class="pill">Looker BI</span><span class="pill">Excel</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="container section" id="missions">
+    <div class="section-header">
+      <div class="section-tag">CHRONICLES</div>
+      <h2>MISSION HISTORY</h2>
+    </div>
+
+    <div class="timeline-strip">
+      <article class="story-panel">
+        <div class="sfx-burst" style="top: -15px; left: -10px; background: var(--comic-yellow); color: var(--ink);">ZAP!</div>
+        <div class="story-header">
+          <div>
+            <div class="company-title">COGNIZANT</div>
+            <div class="role-title">Team Lead — Cloud Billing (GCP) &amp; FinOps</div>
+          </div>
+          <div class="date-badge">JUNE 2022 — PRESENT</div>
+        </div>
+        <ul>
+          <li>Lead and mentor a 40-member team responsible for GCP billing analytics and enterprise operational support.</li>
+          <li>Drive cloud cost optimization through Committed Use Discounts (CUDs) and right-sizing strategies.</li>
+          <li>Perform deep-dive analysis on custom pricing agreements, discount margin structures, and invoice adjustments.</li>
+          <li>Architect transparent Looker BI dashboards for continuous spend visibility across key stakeholders.</li>
+        </ul>
+      </article>
+
+      <article class="story-panel">
+        <div class="story-header">
+          <div>
+            <div class="company-title">GENPACT</div>
+            <div class="role-title">Process Developer — Advanced Hosting Support</div>
+          </div>
+          <div class="date-badge">SEPT 2017 — JAN 2022</div>
+        </div>
+        <ul>
+          <li>Delivered advanced technical infrastructure support across Linux/Windows server environments and cloud systems.</li>
+          <li>Maintained uptime and SLA adherence through continuous server monitoring and rapid fault isolation.</li>
+          <li>Diagnosed network protocols, web server stack issues (cPanel, Plesk, DNS, SSL), and database performance.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="container section" id="credentials">
+    <div class="section-header">
+      <div class="section-tag">VERIFIED BADGES</div>
+      <h2>CERTIFICATIONS</h2>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">GCP</div>
+        <div>
+          <h3>Google Cloud Digital Leader</h3>
+          <p>Issued by Google Cloud • Certified Practitioner</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">FOCP</div>
+        <div>
+          <h3>FinOps Certified Practitioner</h3>
+          <p>Issued by FinOps Foundation (FOCP)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="contact">
+    <div class="contact-panel">
+      <div class="sfx-burst" style="top: -20px; right: 20px;">BOOM!</div>
+      <h2>READY FOR THE NEXT MISSION?</h2>
+      <p>Available for senior leadership roles in Cloud FinOps, GCP Billing Operations, and Infrastructure Governance.</p>
+      <div class="btn-group">
+        <a href="mailto:rafi4842@gmail.com" class="btn-comic primary">SEND DIRECT EMAIL</a>
+        <a href="https://www.linkedin.com/in/muhammad-rafi-38b566b3" target="_blank" rel="noreferrer" class="btn-comic yellow">CONNECT ON LINKEDIN</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  MUHAMMAD RAFI • CLOUD FINOPS &amp; OPERATIONS LEADER
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuToggle.textContent = navLinks.classList.contains('active') ? 'CLOSE ✕' : 'MENU ☰';
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.textContent = 'MENU ☰';
+    });
+  });
+</script>
+</body>
+</html>

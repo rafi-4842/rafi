@@ -1,1 +1,2702 @@
-Hello World !  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta
+    name="description"
+    content="Muhammad Rafi — Cloud Operations & FinOps leader specializing in GCP billing, cloud cost management, and enterprise team leadership."
+  />
+
+  <title>Muhammad Rafi | Cloud FinOps & GCP Billing Operations</title>
+
+  <meta name="theme-color" content="#F7F7F3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       DESIGN SYSTEM
+    ========================================================= */
+
+    :root {
+      color-scheme: light;
+
+      --bg: #f7f7f3;
+      --surface: #ffffff;
+      --surface-2: #eff0f4;
+
+      --ink: #080b12;
+      --muted: #666a75;
+      --line: #dcdde3;
+
+      --brand: #6957e8;
+      --brand-dark: #5140cb;
+      --cyan: #29c7e8;
+      --lime: #cfea68;
+      --coral: #f4775c;
+
+      --vector-dark: #0b0e17;
+      --vector-mid: #151a29;
+
+      --brand-soft: #eae7ff;
+      --cyan-soft: #e4f8fc;
+      --lime-soft: #f2f8d8;
+      --coral-soft: #fff0eb;
+
+      --shadow-sm:
+        0 2px 8px rgba(8, 11, 18, 0.05),
+        0 12px 35px rgba(8, 11, 18, 0.05);
+
+      --shadow-lg:
+        0 20px 70px rgba(8, 11, 18, 0.13);
+
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 40px;
+
+      --container: 1240px;
+      --header-height: 76px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+
+        --bg: #090c13;
+        --surface: #10141e;
+        --surface-2: #171c28;
+
+        --ink: #f4f5f7;
+        --muted: #a3a8b5;
+        --line: #292f3c;
+
+        --brand-soft: #211d42;
+        --cyan-soft: #102b31;
+        --lime-soft: #262c16;
+        --coral-soft: #321e1a;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--brand);
+      color: white;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin-inline: auto;
+    }
+
+    .mono {
+      font-family: "DM Mono", monospace;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--brand);
+      font: 500 12px/1 "DM Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
+      content: "";
+    }
+
+    .section {
+      padding-block: clamp(80px, 10vw, 150px);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.7fr) 1.3fr;
+      gap: 60px;
+      margin-bottom: 55px;
+      align-items: end;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    .section-heading p {
+      max-width: 570px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid color-mix(
+        in srgb,
+        var(--line) 70%,
+        transparent
+      );
+    }
+
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--vector-dark);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+    }
+
+    .brand-mark::before {
+      width: 15px;
+      height: 15px;
+      background: var(--brand);
+      transform: translate(-5px, -4px);
+    }
+
+    .brand-mark::after {
+      width: 10px;
+      height: 10px;
+      background: var(--cyan);
+      transform: translate(7px, 6px);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .nav-cta span {
+      color: var(--lime);
+    }
+
+    .nav-burger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .nav-burger span,
+    .nav-burger span::before,
+    .nav-burger span::after {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--ink);
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .nav-burger span::before {
+      position: absolute;
+      top: -5px;
+    }
+
+    .nav-burger span::after {
+      position: absolute;
+      top: 5px;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      padding: 6px 20px 18px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-nav a {
+      padding: 14px 2px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .mobile-nav a:first-child {
+      border-top: 0;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - var(--header-height));
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-block: 80px;
+    }
+
+    .hero::before {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      top: -250px;
+      right: -200px;
+      border-radius: 50%;
+      background: var(--brand-soft);
+      filter: blur(20px);
+      opacity: 0.8;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(40px, 8vw, 110px);
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      max-width: 780px;
+      margin: 22px 0 26px;
+      font-size: clamp(2.6rem, 5.2vw, 4.6rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    .hero-copy h1 .violet {
+      color: var(--brand);
+    }
+
+    .hero-copy h1 .coral {
+      color: var(--coral);
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.7vw, 20px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 19px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand);
+    }
+
+    .button.primary {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: white;
+    }
+
+    .button.primary:hover {
+      background: var(--brand-dark);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 35px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 85%, transparent);
+      color: var(--muted);
+      font: 400 11px "DM Mono", monospace;
+    }
+
+    .meta-pill::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      content: "";
+    }
+
+    /* =========================================================
+       VECTOR ART
+    ========================================================= */
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-art {
+      width: min(100%, 590px);
+      overflow: visible;
+    }
+
+    .art-orbit {
+      transform-origin: center;
+    }
+
+    .art-node {
+      filter: drop-shadow(0 8px 18px rgba(8, 11, 18, 0.15));
+    }
+
+    .art-label {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-art-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 590px;
+      aspect-ratio: 1;
+    }
+
+    .art-note {
+      position: absolute;
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(14px);
+    }
+
+    .art-note strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .art-note small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font: 400 10px "DM Mono", monospace;
+    }
+
+    .note-one {
+      top: 8%;
+      left: 0;
+    }
+
+    .note-two {
+      right: 0;
+      top: 27%;
+    }
+
+    .note-three {
+      bottom: 8%;
+      left: 8%;
+    }
+
+    /* =========================================================
+       TRUST STRIP
+    ========================================================= */
+
+    .trust {
+      padding-block: 20px 70px;
+    }
+
+    .trust-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-block: 1px solid var(--line);
+    }
+
+    .trust-item {
+      padding: 25px 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .trust-item:last-child {
+      border-right: 0;
+    }
+
+    .trust-number {
+      display: block;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .trust-label {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font: 400 10px "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================================
+       WORK
+    ========================================================= */
+
+    .work {
+      background: var(--vector-dark);
+      color: white;
+      border-radius: var(--radius-xl);
+      margin-inline: 20px;
+    }
+
+    .work .section-heading p {
+      color: #9ca3b2;
+    }
+
+    .work .eyebrow {
+      color: var(--cyan);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .work-card {
+      position: relative;
+      min-height: 440px;
+      grid-column: span 6;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .work-card:nth-child(1) {
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(105,87,232,.34),
+          transparent 30%
+        ),
+        #101321;
+    }
+
+    .work-card:nth-child(2) {
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(41,199,232,.25),
+          transparent 28%
+        ),
+        #0d1920;
+    }
+
+    .work-card:nth-child(3) {
+      background:
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(207,234,104,.18),
+          transparent 28%
+        ),
+        #151a12;
+    }
+
+    .work-card:nth-child(4) {
+      background:
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(244,119,92,.2),
+          transparent 28%
+        ),
+        #1a1314;
+    }
+
+    .work-card:nth-child(1),
+    .work-card:nth-child(4) {
+      min-height: 500px;
+    }
+
+    .work-card:nth-child(3) {
+      grid-column: span 4;
+    }
+
+    .work-card:nth-child(4) {
+      grid-column: span 8;
+    }
+
+    .work-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .work-index {
+      font: 400 11px "DM Mono", monospace;
+      color: #a9afbd;
+    }
+
+    .work-type {
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      font: 400 10px "DM Mono", monospace;
+      color: #b8bdc8;
+    }
+
+    .work-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .work-content h3 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .work-content p {
+      max-width: 500px;
+      margin: 15px 0 0;
+      color: #a8adba;
+      font-size: 14px;
+    }
+
+    .work-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .work-tag {
+      padding: 7px 9px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      color: #bdc2ce;
+      font: 400 9px "DM Mono", monospace;
+    }
+
+    .work-arrow {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: white;
+      color: var(--vector-dark);
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       CAPABILITIES
+    ========================================================= */
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .capability {
+      min-height: 280px;
+      padding: 27px;
+      border-radius: var(--radius-lg);
+      border: 1px solid transparent;
+    }
+
+    .capability:nth-child(1) {
+      background: var(--brand-soft);
+    }
+
+    .capability:nth-child(2) {
+      background: var(--cyan-soft);
+    }
+
+    .capability:nth-child(3) {
+      background: var(--lime-soft);
+    }
+
+    .capability:nth-child(4) {
+      background: var(--coral-soft);
+    }
+
+    .capability:nth-child(5) {
+      background: var(--surface-2);
+    }
+
+    .capability:nth-child(6) {
+      background: color-mix(
+        in srgb,
+        var(--brand-soft) 55%,
+        var(--cyan-soft)
+      );
+    }
+
+    .capability-number {
+      display: block;
+      margin-bottom: 60px;
+      color: var(--muted);
+      font: 400 11px "DM Mono", monospace;
+    }
+
+    .capability h3 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .capability p {
+      margin: 11px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       PROFILE
+    ========================================================= */
+
+    .profile {
+      background: var(--surface);
+      border-block: 1px solid var(--line);
+    }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(50px, 8vw, 130px);
+    }
+
+    .profile-intro h2 {
+      margin: 18px 0 0;
+      font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .profile-copy {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .profile-copy p {
+      margin: 0 0 22px;
+    }
+
+    .profile-list {
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 30px;
+      padding-block: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-row span:first-child {
+      color: var(--muted);
+      font: 400 10px "DM Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .profile-row span:last-child {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       CERTIFICATIONS
+    ========================================================= */
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cert-card {
+      position: relative;
+      min-height: 330px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+
+    .cert-card:first-child {
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(41,199,232,.25),
+          transparent 28%
+        ),
+        linear-gradient(135deg, #111426, #21164a);
+      color: white;
+    }
+
+    .cert-card:nth-child(2) {
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(207,234,104,.24),
+          transparent 28%
+        ),
+        linear-gradient(135deg, #101712, #17372c);
+      color: white;
+    }
+
+    .cert-card small {
+      font: 400 10px "DM Mono", monospace;
+      color: #aeb4c0;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .cert-card h3 {
+      max-width: 600px;
+      margin: 15px 0 0;
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .cert-card p {
+      max-width: 550px;
+      margin: 13px 0 0;
+      color: #aeb4c0;
+      font-size: 13px;
+    }
+
+    .cert-badge {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      font: 500 10px "DM Mono", monospace;
+    }
+
+    /* =========================================================
+       PROCESS
+    ========================================================= */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-step {
+      min-height: 300px;
+      padding: 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .process-step:last-child {
+      border-right: 0;
+    }
+
+    .process-number {
+      color: var(--coral);
+      font: 500 12px "DM Mono", monospace;
+    }
+
+    .process-step h3 {
+      margin: 90px 0 12px;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .process-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact {
+      position: relative;
+      margin: 20px;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: var(--vector-dark);
+      color: white;
+    }
+
+    .contact::after {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      right: -160px;
+      bottom: -260px;
+      border-radius: 50%;
+      background: var(--brand);
+      opacity: .28;
+      filter: blur(20px);
+      content: "";
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact .eyebrow {
+      color: var(--lime);
+    }
+
+    .contact h2 {
+      max-width: 700px;
+      margin: 20px 0;
+      font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -.03em;
+    }
+
+    .contact h2 span {
+      color: var(--brand);
+    }
+
+    .contact-copy {
+      max-width: 520px;
+      color: #a8adba;
+      font-size: 16px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .contact .button {
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: white;
+    }
+
+    .contact .button.primary {
+      background: var(--brand);
+      border-color: var(--brand);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      padding: 30px 20px;
+    }
+
+    .footer-inner {
+      width: min(100%, var(--container));
+      margin-inline: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font: 400 10px "DM Mono", monospace;
+    }
+
+    /* =========================================================
+       DIALOG
+    ========================================================= */
+
+    dialog {
+      width: min(680px, calc(100% - 30px));
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow-lg);
+    }
+
+    dialog::backdrop {
+      background: rgba(8, 11, 18, .58);
+      backdrop-filter: blur(8px);
+    }
+
+    .dialog-inner {
+      padding: 32px;
+    }
+
+    .dialog-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .dialog-close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    dialog h2 {
+      margin: 30px 0 10px;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    dialog p {
+      color: var(--muted);
+    }
+
+    .dialog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    /* =========================================================
+       POPOVER
+    ========================================================= */
+
+    [popover] {
+      margin: 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow-lg);
+    }
+
+    [popover]:popover-open {
+      animation: popover-in 160ms ease both;
+    }
+
+    @keyframes popover-in {
+      from {
+        opacity: 0;
+        transform: translateY(5px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* =========================================================
+       CONTAINER QUERIES
+    ========================================================= */
+
+    .work-grid,
+    .capabilities-grid,
+    .cert-grid {
+      container-type: inline-size;
+    }
+
+    @container (max-width: 850px) {
+      .work-card,
+      .work-card:nth-child(3),
+      .work-card:nth-child(4) {
+        grid-column: span 6;
+      }
+    }
+
+    @container (max-width: 620px) {
+      .work-card,
+      .work-card:nth-child(3),
+      .work-card:nth-child(4) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 460px;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-step:nth-child(2) {
+        border-right: 0;
+      }
+
+      .process-step:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --radius-xl: 28px;
+        --radius-lg: 22px;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .site-header {
+        height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 9px 13px;
+        font-size: 11px;
+      }
+
+      .nav-cta .cta-text {
+        display: none;
+      }
+
+      .nav-burger {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-block: 70px 50px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.3rem, 9vw, 3.4rem);
+        letter-spacing: -0.02em;
+      }
+
+      .hero-visual {
+        min-height: 350px;
+        margin-top: 20px;
+      }
+
+      .art-note {
+        transform: scale(.82);
+      }
+
+      .note-one {
+        left: -18px;
+      }
+
+      .note-two {
+        right: -18px;
+      }
+
+      .trust-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .trust-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .trust-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .work {
+        margin-inline: 8px;
+      }
+
+      .work-card {
+        min-height: 390px;
+        padding: 22px;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .capability {
+        min-height: 230px;
+      }
+
+      .capability-number {
+        margin-bottom: 45px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step,
+      .process-step:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .process-step:last-child {
+        border-bottom: 0;
+      }
+
+      .profile-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .cert-card {
+        min-height: 300px;
+        padding: 24px;
+      }
+
+      .contact {
+        margin: 8px;
+      }
+
+      .contact-inner {
+        min-height: 500px;
+      }
+
+      .contact h2 {
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
+        letter-spacing: -0.02em;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =========================================================
+       VIEW TRANSITIONS
+    ========================================================= */
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 180ms;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+
+      <a href="#top" class="brand" aria-label="Home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Muhammad Rafi</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#profile">Profile</a>
+        <a href="#certifications">Credentials</a>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-cta" href="#contact">
+          <span class="cta-text">Start a conversation</span>
+          <span>↗</span>
+        </a>
+
+        <button class="nav-burger" id="navBurger" type="button" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#work">Work</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#profile">Profile</a>
+      <a href="#certifications">Credentials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+
+  <main id="top">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">
+            Cloud Ops / FinOps / GCP Billing
+          </span>
+
+          <h1>
+            Making cloud spend
+            <span class="violet">intelligent.</span>
+            <br />
+            Making cost
+            <span class="coral">visible.</span>
+          </h1>
+
+          <p class="hero-description">
+            I lead billing and cost operations for enterprise GCP
+            customers — reading usage, pricing, and contract data
+            so teams don't have to guess where the spend is going,
+            or why.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="button primary">
+              View experience
+              <span>↘</span>
+            </a>
+
+            <a href="#contact" class="button">
+              Get in touch
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span class="meta-pill">GCP Billing</span>
+            <span class="meta-pill">FinOps</span>
+            <span class="meta-pill">Team Leadership</span>
+            <span class="meta-pill">Looker</span>
+          </div>
+
+        </div>
+
+
+        <!-- VECTOR ART -->
+
+        <div class="hero-visual">
+
+          <div class="hero-art-wrap">
+
+            <svg
+              class="hero-art"
+              viewBox="0 0 600 600"
+              role="img"
+              aria-label="GCP billing operations vector diagram"
+            >
+
+              <!-- outer rings -->
+
+              <circle
+                cx="300"
+                cy="300"
+                r="235"
+                fill="none"
+                stroke="var(--line)"
+                stroke-width="1"
+              />
+
+              <circle
+                cx="300"
+                cy="300"
+                r="190"
+                fill="none"
+                stroke="var(--brand)"
+                stroke-width="1"
+                opacity=".35"
+              />
+
+              <circle
+                cx="300"
+                cy="300"
+                r="145"
+                fill="none"
+                stroke="var(--cyan)"
+                stroke-width="1"
+                opacity=".35"
+              />
+
+
+              <!-- connector network -->
+
+              <g
+                fill="none"
+                stroke-width="2"
+                opacity=".7"
+              >
+                <path
+                  d="M120 155 L238 245"
+                  stroke="var(--cyan)"
+                />
+
+                <path
+                  d="M480 155 L362 245"
+                  stroke="var(--coral)"
+                />
+
+                <path
+                  d="M120 445 L238 355"
+                  stroke="var(--lime)"
+                />
+
+                <path
+                  d="M480 445 L362 355"
+                  stroke="var(--brand)"
+                />
+              </g>
+
+
+              <!-- nodes -->
+
+              <g class="art-node">
+                <circle
+                  cx="120"
+                  cy="155"
+                  r="11"
+                  fill="var(--cyan)"
+                />
+
+                <circle
+                  cx="480"
+                  cy="155"
+                  r="11"
+                  fill="var(--coral)"
+                />
+
+                <circle
+                  cx="120"
+                  cy="445"
+                  r="11"
+                  fill="var(--lime)"
+                />
+
+                <circle
+                  cx="480"
+                  cy="445"
+                  r="11"
+                  fill="var(--brand)"
+                />
+              </g>
+
+
+              <!-- central system -->
+
+              <circle
+                cx="300"
+                cy="300"
+                r="88"
+                fill="var(--vector-dark)"
+                stroke="var(--lime)"
+                stroke-width="7"
+              />
+
+              <circle
+                cx="300"
+                cy="300"
+                r="68"
+                fill="var(--vector-mid)"
+                stroke="rgba(255,255,255,.1)"
+                stroke-width="1"
+              />
+
+              <text
+                x="300"
+                y="295"
+                text-anchor="middle"
+                fill="white"
+                font-family="DM Mono"
+                font-size="34"
+                font-weight="500"
+              >
+                GCP
+              </text>
+
+              <text
+                x="300"
+                y="319"
+                text-anchor="middle"
+                fill="#AEB4C0"
+                font-family="DM Mono"
+                font-size="9"
+                letter-spacing="1"
+              >
+                BILLING OPERATIONS
+              </text>
+
+
+              <!-- labels -->
+
+              <text
+                x="120"
+                y="135"
+                text-anchor="middle"
+                class="art-label"
+                fill="var(--cyan)"
+              >
+                DATA
+              </text>
+
+              <text
+                x="480"
+                y="135"
+                text-anchor="middle"
+                class="art-label"
+                fill="var(--coral)"
+              >
+                COST
+              </text>
+
+              <text
+                x="120"
+                y="475"
+                text-anchor="middle"
+                class="art-label"
+                fill="var(--lime)"
+              >
+                VALUE
+              </text>
+
+              <text
+                x="480"
+                y="475"
+                text-anchor="middle"
+                class="art-label"
+                fill="var(--brand)"
+              >
+                CONTROL
+              </text>
+
+
+              <!-- tiny system marks -->
+
+              <g
+                fill="none"
+                stroke="rgba(255,255,255,.18)"
+              >
+                <rect
+                  x="270"
+                  y="60"
+                  width="60"
+                  height="20"
+                  rx="10"
+                />
+
+                <rect
+                  x="270"
+                  y="520"
+                  width="60"
+                  height="20"
+                  rx="10"
+                />
+              </g>
+
+            </svg>
+
+
+            <div class="art-note note-one">
+              <strong>Visibility</strong>
+              <small>Know where money moves</small>
+            </div>
+
+            <div class="art-note note-two">
+              <strong>Control</strong>
+              <small>Automate the obvious</small>
+            </div>
+
+            <div class="art-note note-three">
+              <strong>Value</strong>
+              <small>Connect spend to outcomes</small>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         TRUST / METRICS
+    ====================================================== -->
+
+    <section class="trust">
+      <div class="container trust-inner">
+
+        <div class="trust-item">
+          <span class="trust-number">8+</span>
+          <span class="trust-label">Years in Cloud Ops &amp; FinOps</span>
+        </div>
+
+        <div class="trust-item">
+          <span class="trust-number">40</span>
+          <span class="trust-label">Team Members Led</span>
+        </div>
+
+        <div class="trust-item">
+          <span class="trust-number">2</span>
+          <span class="trust-label">Certifications On File</span>
+        </div>
+
+        <div class="trust-item">
+          <span class="trust-number">GCP</span>
+          <span class="trust-label">Primary Platform</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         WORK
+    ====================================================== -->
+
+    <section class="section work" id="work">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">Selected work</span>
+          </div>
+
+          <div>
+            <h2>
+              Where cloud complexity
+              meets financial decisions.
+            </h2>
+
+            <p>
+              What the role at Cognizant actually involves — day to day,
+              across a 40-person team supporting enterprise GCP accounts.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="work-grid">
+
+          <!-- CARD 01 -->
+
+          <article class="work-card">
+
+            <div class="work-top">
+              <span class="work-index">01 / FINOPS</span>
+              <span class="work-type">Cost intelligence</span>
+            </div>
+
+            <div class="work-content">
+
+              <h3>
+                Cloud Cost
+                Intelligence
+              </h3>
+
+              <p>
+                Turning billing data into useful operational
+                signals so teams can understand spend,
+                identify anomalies and make better decisions.
+              </p>
+
+            </div>
+
+            <div class="work-footer">
+
+              <div class="work-tags">
+                <span class="work-tag">GCP</span>
+                <span class="work-tag">Billing</span>
+                <span class="work-tag">FinOps</span>
+              </div>
+
+              <button
+                class="work-arrow"
+                popovertarget="project1"
+                aria-label="Preview Cloud Cost Intelligence"
+              >
+                ↗
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- CARD 02 -->
+
+          <article class="work-card">
+
+            <div class="work-top">
+              <span class="work-index">02 / OPERATIONS</span>
+              <span class="work-type">Automation</span>
+            </div>
+
+            <div class="work-content">
+
+              <h3>
+                Smarter
+                Operations
+              </h3>
+
+              <p>
+                Designing operational workflows that reduce
+                repetitive investigation and surface the
+                information teams actually need.
+              </p>
+
+            </div>
+
+            <div class="work-footer">
+
+              <div class="work-tags">
+                <span class="work-tag">Automation</span>
+                <span class="work-tag">Workflows</span>
+                <span class="work-tag">Cloud Ops</span>
+              </div>
+
+              <button
+                class="work-arrow"
+                popovertarget="project2"
+                aria-label="Preview Smarter Operations"
+              >
+                ↗
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- CARD 03 -->
+
+          <article class="work-card">
+
+            <div class="work-top">
+              <span class="work-index">03 / GOVERNANCE</span>
+              <span class="work-type">Control</span>
+            </div>
+
+            <div class="work-content">
+
+              <h3>
+                Guardrails
+                that scale
+              </h3>
+
+              <p>
+                Creating practical controls that improve
+                governance without slowing engineering teams.
+              </p>
+
+            </div>
+
+            <div class="work-footer">
+
+              <div class="work-tags">
+                <span class="work-tag">Governance</span>
+                <span class="work-tag">Policy</span>
+              </div>
+
+              <button
+                class="work-arrow"
+                popovertarget="project3"
+                aria-label="Preview Guardrails"
+              >
+                ↗
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- CARD 04 -->
+
+          <article class="work-card">
+
+            <div class="work-top">
+              <span class="work-index">04 / EXPERIENCE</span>
+              <span class="work-type">Product thinking</span>
+            </div>
+
+            <div class="work-content">
+
+              <h3>
+                From raw data
+                to clear action.
+              </h3>
+
+              <p>
+                Building experiences around complex technical
+                information so users can quickly understand
+                what changed, why it matters and what to do next.
+              </p>
+
+            </div>
+
+            <div class="work-footer">
+
+              <div class="work-tags">
+                <span class="work-tag">UX</span>
+                <span class="work-tag">Data</span>
+                <span class="work-tag">Product</span>
+              </div>
+
+              <button
+                class="work-arrow"
+                popovertarget="project4"
+                aria-label="Preview Product Experience"
+              >
+                ↗
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CAPABILITIES
+    ====================================================== -->
+
+    <section class="section" id="capabilities">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">01 / Capabilities</span>
+          </div>
+
+          <div>
+            <h2>
+              What I bring
+              to the table.
+            </h2>
+
+            <p>
+              A practical combination of cloud knowledge,
+              financial awareness, operational thinking and
+              product-oriented problem solving.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="capabilities-grid">
+
+          <article class="capability">
+            <span class="capability-number">01</span>
+            <h3>FinOps</h3>
+            <p>
+              Connecting cloud consumption with financial
+              accountability and business value.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">02</span>
+            <h3>Cloud Cost Management</h3>
+            <p>
+              Billing analysis, cost visibility, anomaly
+              investigation and optimization.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">03</span>
+            <h3>GCP Operations</h3>
+            <p>
+              Working across cloud infrastructure,
+              billing and operational workflows.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">04</span>
+            <h3>Automation</h3>
+            <p>
+              Removing repetitive work and turning recurring
+              operational decisions into reliable workflows.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">05</span>
+            <h3>Problem Solving</h3>
+            <p>
+              Breaking complicated issues into clear,
+              actionable decisions.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">06</span>
+            <h3>Product Thinking</h3>
+            <p>
+              Designing tools and experiences around the
+              people who actually use them.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         PROFILE
+    ====================================================== -->
+
+    <section class="section profile" id="profile">
+
+      <div class="container profile-layout">
+
+        <div class="profile-intro">
+
+          <span class="eyebrow">
+            Professional profile
+          </span>
+
+          <h2>
+            Technical
+            thinking.
+            Human
+            outcomes.
+          </h2>
+
+        </div>
+
+
+        <div class="profile-copy">
+
+          <p>
+            My focus is on making complex cloud environments
+            easier to understand, manage and improve.
+          </p>
+
+          <p>
+            That means looking beyond dashboards and numbers.
+            The useful question is always what the information
+            enables a team to do next.
+          </p>
+
+          <p>
+            I bring together cloud operations, FinOps,
+            analytical thinking, automation and product
+            experience to build practical solutions.
+          </p>
+
+
+          <div class="profile-list">
+
+            <div class="profile-row">
+              <span>Focus</span>
+              <span>Cloud FinOps & Operations</span>
+            </div>
+
+            <div class="profile-row">
+              <span>Platform</span>
+              <span>Google Cloud Platform</span>
+            </div>
+
+            <div class="profile-row">
+              <span>Approach</span>
+              <span>Data → Insight → Action</span>
+            </div>
+
+            <div class="profile-row">
+              <span>Mindset</span>
+              <span>Automate what should not be manual</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CERTIFICATIONS
+    ====================================================== -->
+
+    <section class="section" id="certifications">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              02 / Credentials
+            </span>
+          </div>
+
+          <div>
+            <h2>
+              Certified for
+              the work.
+            </h2>
+
+            <p>
+              Formal FinOps knowledge combined with practical
+              cloud operations and financial management experience.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="cert-grid">
+
+          <article class="cert-card">
+
+            <div>
+              <small>FinOps Certification</small>
+
+              <h3>
+                FinOps Certified
+                Practitioner
+              </h3>
+
+              <p>
+                Foundation in FinOps principles, cloud financial
+                management, collaboration and value-driven
+                cloud decision making.
+              </p>
+            </div>
+
+            <div class="cert-badge">
+              FOCP
+            </div>
+
+            <div>
+              <span class="meta-pill">
+                FinOps Certified Practitioner
+              </span>
+            </div>
+
+          </article>
+
+
+          <article class="cert-card">
+
+            <div>
+              <small>Cloud Expertise</small>
+
+              <h3>
+                Cloud &
+                Operations
+              </h3>
+
+              <p>
+                Practical experience across cloud billing,
+                operational processes, analysis, escalation
+                management and automation.
+              </p>
+            </div>
+
+            <div class="cert-badge">
+              CLOUD
+            </div>
+
+            <div>
+              <span class="meta-pill">
+                GCP / Cloud Operations
+              </span>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROCESS
+    ====================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              03 / Approach
+            </span>
+          </div>
+
+          <div>
+            <h2>
+              How I solve
+              problems.
+            </h2>
+
+            <p>
+              Simple enough to explain. Structured enough to
+              work at enterprise scale.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="process-grid">
+
+          <article class="process-step">
+            <span class="process-number">01</span>
+            <h3>Understand</h3>
+            <p>
+              Establish the problem, context, users and
+              business impact.
+            </p>
+          </article>
+
+          <article class="process-step">
+            <span class="process-number">02</span>
+            <h3>Connect</h3>
+            <p>
+              Bring together technical, financial and
+              operational signals.
+            </p>
+          </article>
+
+          <article class="process-step">
+            <span class="process-number">03</span>
+            <h3>Simplify</h3>
+            <p>
+              Remove unnecessary complexity and expose
+              the decisions that matter.
+            </p>
+          </article>
+
+          <article class="process-step">
+            <span class="process-number">04</span>
+            <h3>Improve</h3>
+            <p>
+              Automate repeatable work and continuously
+              improve the operating model.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section class="contact" id="contact">
+
+      <div class="container contact-inner">
+
+        <span class="eyebrow">
+          Let's build something useful
+        </span>
+
+        <h2>
+          Start a
+          <span>conversation.</span>
+        </h2>
+
+        <p class="contact-copy">
+          Have a cloud operations, FinOps, automation or
+          product problem worth solving? Let's talk about it.
+        </p>
+
+        <div class="contact-actions">
+
+          <button
+            class="button primary"
+            id="openContact"
+            type="button"
+          >
+            Send an email ↗
+          </button>
+
+          <a
+            href="#work"
+            class="button"
+          >
+            View the work
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <span>
+        © <span id="year"></span> Cloud Intelligence
+      </span>
+
+      <span>
+        BUILT WITH HTML / CSS / JAVASCRIPT
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       PROJECT POPOVERS
+  ======================================================== -->
+
+  <div id="project1" popover>
+    <strong>Cloud Cost Intelligence</strong>
+    <br />
+    <small>
+      Cost visibility, billing analysis and FinOps workflows.
+    </small>
+  </div>
+
+  <div id="project2" popover>
+    <strong>Smarter Operations</strong>
+    <br />
+    <small>
+      Automation and operational decision support.
+    </small>
+  </div>
+
+  <div id="project3" popover>
+    <strong>Cloud Guardrails</strong>
+    <br />
+    <small>
+      Governance designed around practical cloud operations.
+    </small>
+  </div>
+
+  <div id="project4" popover>
+    <strong>Product Experience</strong>
+    <br />
+    <small>
+      Turning complex technical information into clear actions.
+    </small>
+  </div>
+
+
+  <!-- =======================================================
+       CONTACT DIALOG
+  ======================================================== -->
+
+  <dialog id="contactDialog" aria-labelledby="contactTitle">
+
+    <div class="dialog-inner">
+
+      <div class="dialog-top">
+
+        <span class="eyebrow">
+          Contact
+        </span>
+
+        <button
+          class="dialog-close"
+          id="closeContact"
+          type="button"
+          aria-label="Close contact dialog"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <h2 id="contactTitle">
+        Let's talk.
+      </h2>
+
+      <p>
+        Choose how you'd like to get in touch.
+      </p>
+
+      <div class="dialog-tags">
+
+        <a
+          class="button primary"
+          href="mailto:your-email@example.com?subject=Portfolio%20Enquiry"
+        >
+          Email ↗
+        </a>
+
+        <button
+          class="button"
+          id="copyEmail"
+          type="button"
+        >
+          Copy email
+        </button>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <script>
+    /* =========================================================
+       BASIC UI
+    ========================================================= */
+
+    const year = document.getElementById("year");
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+
+
+    /* =========================================================
+       MOBILE NAV
+    ========================================================= */
+
+    const navBurger = document.getElementById("navBurger");
+    const mobileNav = document.getElementById("mobileNav");
+
+    if (navBurger && mobileNav) {
+      navBurger.addEventListener("click", () => {
+        const open = mobileNav.classList.toggle("open");
+        navBurger.setAttribute("aria-expanded", String(open));
+      });
+
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("open");
+          navBurger.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+
+    /* =========================================================
+       CONTACT DIALOG
+    ========================================================= */
+
+    const contactDialog = document.getElementById("contactDialog");
+    const openContact = document.getElementById("openContact");
+    const closeContact = document.getElementById("closeContact");
+
+    if (openContact && contactDialog) {
+      openContact.addEventListener("click", () => {
+        contactDialog.showModal();
+      });
+    }
+
+    if (closeContact && contactDialog) {
+      closeContact.addEventListener("click", () => {
+        contactDialog.close();
+      });
+    }
+
+    if (contactDialog) {
+      contactDialog.addEventListener("click", (event) => {
+        const rect = contactDialog.getBoundingClientRect();
+
+        const inside =
+          event.clientX >= rect.left &&
+          event.clientX <= rect.right &&
+          event.clientY >= rect.top &&
+          event.clientY <= rect.bottom;
+
+        if (!inside) {
+          contactDialog.close();
+        }
+      });
+    }
+
+
+    /* =========================================================
+       COPY EMAIL
+    ========================================================= */
+
+    const copyEmail = document.getElementById("copyEmail");
+
+    /*
+      Replace this value with the actual email address.
+      Keeping it in one variable makes maintenance easier.
+    */
+
+    const EMAIL_ADDRESS = "your-email@example.com";
+
+    if (copyEmail) {
+      copyEmail.addEventListener("click", async () => {
+
+        try {
+
+          await navigator.clipboard.writeText(EMAIL_ADDRESS);
+
+          const original = copyEmail.textContent;
+
+          copyEmail.textContent = "Copied ✓";
+
+          setTimeout(() => {
+            copyEmail.textContent = original;
+          }, 1600);
+
+        } catch {
+
+          window.prompt(
+            "Copy this email address:",
+            EMAIL_ADDRESS
+          );
+
+        }
+
+      });
+    }
+
+
+    /* =========================================================
+       ACCESSIBLE POPOVER STATE
+    ========================================================= */
+
+    document
+      .querySelectorAll("[popovertarget]")
+      .forEach((trigger) => {
+
+        const targetId = trigger.getAttribute("popovertarget");
+        const target = document.getElementById(targetId);
+
+        if (!target) return;
+
+        const updateState = () => {
+
+          const open =
+            target.matches(":popover-open");
+
+          trigger.setAttribute(
+            "aria-expanded",
+            String(open)
+          );
+
+        };
+
+        target.addEventListener(
+          "toggle",
+          updateState
+        );
+
+        trigger.addEventListener(
+          "click",
+          () => {
+            requestAnimationFrame(updateState);
+          }
+        );
+
+      });
+
+
+    /* =========================================================
+       OPTIONAL VIEW TRANSITION
+    ========================================================= */
+
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+          const id = link.getAttribute("href");
+
+          if (!id || id === "#") return;
+
+          const target = document.querySelector(id);
+
+          if (!target) return;
+
+          event.preventDefault();
+
+          const scroll = () => {
+            target.scrollIntoView({
+              behavior: "instant",
+              block: "start"
+            });
+          };
+
+          if (
+            document.startViewTransition &&
+            !window.matchMedia(
+              "(prefers-reduced-motion: reduce)"
+            ).matches
+          ) {
+
+            document.startViewTransition(scroll);
+
+          } else {
+
+            scroll();
+
+          }
+
+        });
+
+      });
+  </script>
+
+</body>
+</html>
